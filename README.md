@@ -1,34 +1,43 @@
-# Example Forge Mod for Minecraft 1.7.10
+# Superlithe: Forked from the GTNH 1.7.10 Example Forge Mod
 
-[![](https://jitpack.io/v/GTNewHorizons/ExampleMod1.7.10.svg)](https://jitpack.io/#GTNewHorizons/ExampleMod1.7.10)
-[![](https://github.com/GTNewHorizons/ExampleMod1.7.10/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/GTNewHorizons/ExampleMod1.7.10/actions/workflows/build-and-test.yml)
+A lightweight mod template for Minecraft 1.7.10 with RFGradle that's keeping it simple.
 
-An example mod for Minecraft 1.7.10 with Forge focussed on a stable, updatable setup.
+## Credit
+
+Many thanks to [SinTh0r4s](https://github.com/SinTh0r4s), [TheElan](https://github.com/TheElan), [basdxz](https://github.com/basdxz), and all other contributors to the [original template](https://github.com/GTNewHorizons/ExampleMod1.7.10).
 
 ### Motivation
 
-We had our fair share in struggles with build scripts for Minecraft Forge. There are quite a few pitfalls from non-obvious error messages. This Example Project provides you a build system you can adapt to over 90% of Minecraft Forge mods and can easily be updated if need be.
+Superlithe attempts to provide a dead-simple build system for both new and experienced modders. Currently, it doesn't do that.
 
 ### Help! I'm stuck!
 
-We all have been there! Check out our [FAQ](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/docs/FAQ.md). If that doesn't help, please open an issue.
+This project is *highly experimental*, and commits may brick things temporarily. For the time being, this template should not be used in serious projects. New mods should first consider using the [GTNH template](https://github.com/GTNewHorizons/ExampleMod1.7.10), which is very stable in comparison.
 
 ### Getting started
 
 Creating mod from scratch:
-1. Unzip [project starter](https://github.com/GTNewHorizons/ExampleMod1.7.10/releases/download/master-packages/starter.zip) into project directory.
-2. Replace placeholders in LICENSE-template and rename it to LICENSE, or remove LICENSE-template and put any other license you like on your code. This is an permissive OSS project and we encourage you participate in OSS movement by having permissive license like one in template. You can find out pros and cons of OSS software in [this article](https://www.freecodecamp.org/news/what-is-great-about-developing-open-source-and-what-is-not/)
-3. Ensure your project is under VCS. For example initialise git repository by running `git init; git commit --message "initialized repository"`.
-4. Replace placeholders (edit values in gradle.properties, change example package and class names, etc.)
-5. Run `./gradlew build`
-6. Make sure to check out the rest sections of this file.
-7. You are good to go!
+1. If you know how, clone this repository. Those interested in a simplified workflow might prefer using the `Code > Download Zip` drop-down on the Github website.
+2. Change the LICENSE file to your preferred software license (ignore this step if you're okay with using the MIT license). If you're unfamiliar with FOSS software licensing, scan [this article](https://en.wikipedia.org/wiki/Open-source_license) for an introduction.
+3. Initializing your folder as a git repository is highly encouraged. If you have git installed, enter this at the command line: `git init; git commit --message "Initial Commit"`. If you're interested in sharing your mod's code through Github, see [this guide](https://docs.github.com/en/get-started/git-basics/managing-remote-repositories). 
+4. Replace placeholder values in gradle.properties.
+5. Rename the directories `/src/main/java/com/myname/mymodid/` to align with your `modGroup` property in gradle.properties. For example, if your `modGroup` is `com.johndoe.grassblocks-improved`, your source code should be under `/src/main/java/com/johndoe/grassblocks-improved/`.
+6. If you're interested in using Scala in your mod, put Scala source files under `/src/main/scala/...`.
+7. Rename classes to your liking (`*.java` files are all classes).
+8. Run `./gradlew build`.
+9. Check out the rest sections of this file.
+10. When sharing your work publicly, remember to comply with the [Minecraft EULA](https://www.minecraft.net/en-us/eula). In a nutshell: selling your mod is verboten (all the more reason to share the source code for free!), and you should try to avoid using decompiled code by Mojang.
+ 
+## Migration 
 
-We also have described guidelines for existing mod [migration](docs/migration.md) and [porting](docs/porting.md)
+Migration from other Forge workspaces is not a current design priority. If you are interested in migration/porting to Superlithe, you are better suited porting to the [GTNH workspace](https://github.com/GTNewHorizons/ExampleMod1.7.10) and then Frankenstein-ing together your own bespoke build system with parts of this repository.
 
 ### Features
 
- - Updatable: Replace [`build.gradle`](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/build.gradle) with a newer version
+#### Unique to Superlithe
+ - *crickets*
+ 
+#### From GTNH
  - Optional API artifact (.jar)
  - Optional version replacement in Java files
  - Optional shadowing of dependencies
@@ -43,13 +52,21 @@ We also have described guidelines for existing mod [migration](docs/migration.md
    - Releasing your artifacts on new tags pushed. Push git tag named after version (e.g. 1.0.0) which will trigger a release of artifacts with according names.
    - Running smoke test for server startup. On any server crash occurring workflow will fail and print the crash log.
 
+### Goals
+- [ ] Explanatory documentation inside most files for hackers and those new to Gradle
+- [ ] Simplified/documented Gradle commands
+- [ ] Overhauled `gradle.properties`
+  - [ ] Distinguished required/non-required fields
+  - [ ] GTNH-specific integration made more workflow-agnostic
+- [ ] Stability improvements
+  - [ ] Warnings when authors require compatibility-breaking mods
+- [ ] Superlithe-specific contributions to the [legacy modding wiki](https://legacymoddingmc.github.io/wiki/).
+
 ### Files
- - [`build.gradle`](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/build.gradle): This is the core script of the build process. You should not need to tamper with it, unless you are trying to accomplish something out of the ordinary. __Do not touch this file! You will make a future update near impossible if you do so!__
  - [`gradle.properties`](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/gradle.properties): The core configuration file. It includes
  - [`dependencies.gradle[.kts]`](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/dependencies.gradle): Add your mod's dependencies in this file. This is separate from the main build script, so you may replace the [`build.gradle`](https://github.com/SinTh0r4s/ExampleMod1.7.10/blob/main/build.gradle) if an update is available.
  - [`repositories.gradle[.kts]`](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/repositories.gradle): Add your dependencies' repositories. This is separate from the main build script, so you may replace the [`build.gradle`](https://github.com/SinTh0r4s/ExampleMod1.7.10/blob/main/build.gradle) if an update is available.
  - [`jitpack.yml`](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/jitpack.yml): Ensures that your mod is available as import over [Jitpack](https://jitpack.io).
- - [`.github/workflows/gradle.yml`](https://github.com/GTNewHorizons/ExampleMod1.7.10/blob/main/.github/workflows/gradle.yml): A simple CI script that will build your mod any time it is pushed to `master` or `main` and publish the result as release in your repository. This feature is free with GitHub if your repository is public.
 
 ### Forge's Access Transformers
 
@@ -68,13 +85,7 @@ Take a look at the examples in [Hodgepodge](https://github.com/GTNewHorizons/Hod
 
 ### Advanced
 
-If your project requires custom gradle commands you may add a `addon.gradle[.kts]` to your project. It will be added automatically to the build script. Although we recommend against it, it is sometimes required. When in doubt, feel free to ask us about it. You may break future updates of this build system!
+If your project requires custom Gradle commands you may add a `addon.gradle[.kts]` to your project. It will be added automatically to the build script. Although we recommend against it, it is sometimes required. When in doubt, feel free to ask us about it. You may break future updates of this build system!
 If you need access to properties modified later in the buildscript, you can also use a `addon.late.gradle[.kts]`.
 For local tweaks that you don't want to commit to Git, like adding extra JVM arguments for testing, use `addon[.late].local.gradle[.kts]`.
 
-### Feedback wanted
-
-If you tried out this build script we would love to head your opinion! Is there any feature missing for you? Did something not work? Please open an issue and we will try to resolve it asap!
-
-Happy modding, \
-[SinTh0r4s](https://github.com/SinTh0r4s), [TheElan](https://github.com/TheElan) and [basdxz](https://github.com/basdxz)
